@@ -21,6 +21,7 @@ package-lock.json
 *bak
 .vscode
 .huskygpt_review.md
+.env.local
 
 
 # visual studio code
