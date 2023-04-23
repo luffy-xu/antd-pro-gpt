@@ -1,10 +1,9 @@
-﻿import type { RequestOptions } from '@@/plugin-request/request';
-import type { RequestConfig } from '@umijs/max';
+﻿import type { RequestConfig } from '@umijs/max';
 import { message, notification } from 'antd';
 
 // 错误处理方案： 错误类型
 // 0: 无提示， 1: 警告提示， 2: 错误提示， 3: 通知提示， 9: 跳转
-enum ErrorShowType {
+export enum ErrorShowType {
   SILENT = 0,
   WARN_MESSAGE = 1,
   ERROR_MESSAGE = 2,
@@ -12,9 +11,9 @@ enum ErrorShowType {
   REDIRECT = 9,
 }
 // 与后端约定的响应数据格式
-interface ResponseStructure<T = any> {
+export interface ResponseStructure<T = any> {
   success: boolean;
-  data: T;
+  data?: T;
   errorCode?: number;
   errorMessage?: string;
   showType?: ErrorShowType;
@@ -87,13 +86,13 @@ export const errorConfig: RequestConfig = {
   },
 
   // 请求拦截器
-  requestInterceptors: [
-    (config: RequestOptions) => {
-      // 拦截请求配置，进行个性化处理。
-      const url = config?.url?.concat('?token = 123');
-      return { ...config, url };
-    },
-  ],
+  // requestInterceptors: [
+  //   (config: RequestOptions) => {
+  //     // 拦截请求配置，进行个性化处理。
+  //     const url = config?.url?.concat('?token = 123');
+  //     return { ...config, url };
+  //   },
+  // ],
 
   // 响应拦截器
   responseInterceptors: [
