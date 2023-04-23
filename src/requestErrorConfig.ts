@@ -3,6 +3,7 @@ import type { RequestConfig } from '@umijs/max';
 import { message, notification } from 'antd';
 
 // 错误处理方案： 错误类型
+// 0: 无提示， 1: 警告提示， 2: 错误提示， 3: 通知提示， 9: 跳转
 enum ErrorShowType {
   SILENT = 0,
   WARN_MESSAGE = 1,
@@ -11,9 +12,9 @@ enum ErrorShowType {
   REDIRECT = 9,
 }
 // 与后端约定的响应数据格式
-interface ResponseStructure {
+interface ResponseStructure<T = any> {
   success: boolean;
-  data: any;
+  data: T;
   errorCode?: number;
   errorMessage?: string;
   showType?: ErrorShowType;
